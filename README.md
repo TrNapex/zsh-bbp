@@ -4,8 +4,7 @@
 
 ---
 
-> **Modern, lightweight, safe, and aesthetic setup for Zsh.**
-> Zsh terminaliniz için hızlı, korumalı, renkli ve Türkçe/İngilizce destekli yapılandırma scripti.
+> **Zsh terminaliniz için hızlı, korumalı, renkli ve Türkçe/İngilizce destekli yapılandırma scripti.**
 
 > [!Note] 
 > ***Sadece Linux & Termux ortamları için geliştirildi ve test edildi.***
