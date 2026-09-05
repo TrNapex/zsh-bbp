@@ -7,7 +7,8 @@
 > **Modern, lightweight, safe, and aesthetic setup for Zsh.**
 > Zsh terminaliniz için hızlı, korumalı, renkli ve Türkçe/İngilizce destekli yapılandırma scripti.
 
-# Note: Designed and tested Only for Linux & Termux environments.
+# Note: 
+Designed and tested Only for Linux & Termux environments.
 
 ## 🌟 Öne Çıkan Özellikler / Features
  * 🛡️ **SecFF (Security Folder & File):** rm ve mv komutlarını korumaya alarak önemli dosya ve klasörlerin yanlışlıkla silinmesini engeller.
@@ -62,7 +63,8 @@ BbP yapılırken yapay zekadan yardım alındı. Algoritma, çalışma prensibi 
 > **Modern, lightweight, safe, and aesthetic setup for Zsh.**
 > A fast, protected, colorful Zsh configuration script with Turkish/English support.
 
-# Note: Designed and tested Only for Linux & Termux environments.
+# Note: 
+Designed and tested Only for Linux & Termux environments.
 
 ## 🌟 Key Features
  * 🛡️ **SecFF (Security Folder & File):** Protects your files and folders from accidental deletion by safely overriding `rm` and `mv`.
