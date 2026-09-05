@@ -3,7 +3,8 @@
 clear && echo •.... && sleep 0.2 && clear && echo .•... && sleep 0.2 && clear && echo ..•.. && sleep 0.2 && clear && echo ...•. && sleep 0.2 && clear && echo ....• && sleep 0.1
 
 #================================================================================================================================================================================
-                                                                                        # BbP Ana Dizin Yapılandırması / Core Directory Setup
+
+# BbP Ana Dizin Yapılandırması / Core Directory Setup
 BBP_DIR="$HOME/.zsh_bbp"
 mkdir -p "$BBP_DIR/plugins"
 
@@ -17,14 +18,19 @@ touch "$SEC_FILE"
 # Dil Seçimi & Giriş Ekranı / Language & Welcome Screen
 
 clear
-                                                                                        if [ ! -f "$CONFIG_FILE" ]; then
+
+if [ ! -f "$CONFIG_FILE" ]; then
     print -P "%F{39}Language / Dil Seçimi:%f"
     echo "  [E] English"
-    echo "  [T] Türkçe"                                                                     read -k 1 "user_lang?[E/T]: "
-    echo ""                                                                                 case "$user_lang" in
+    echo "  [T] Türkçe"
+    read -k 1 "user_lang?[E/T]: "
+    echo ""
+    case "$user_lang" in
         [Tt]*) echo "TR" > "$CONFIG_FILE" ;;
         *)     echo "ENG" > "$CONFIG_FILE" ;;
-    esac                                                                                    clear                                                                               fi
+    esac
+    clear
+fi
 
 # Güvenli ve optimize edilmiş dil okuma
 SELECTED_LANG="ENG"
@@ -513,4 +519,10 @@ function bbp_start() {
 
         echo "✨ BbP başarıyla kuruldu ve temizlendi!"
 
-        # 3. T
+        # 3. Terminali tazeleyiver
+        source "$HOME/.zshrc"
+    else
+        echo "❌ Hata: Bulunduğun klasörde 'bbp.sh' dosyası bulunamadı!"
+        echo "💡 İpucu: Lütfen 'cd zsh-bbp' ile proje klasörünün içinde olduğundan emin ol."
+    fi
+}
