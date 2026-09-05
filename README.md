@@ -8,7 +8,7 @@
 > Zsh terminaliniz için hızlı, korumalı, renkli ve Türkçe/İngilizce destekli yapılandırma scripti.
 
 > [!Note] 
-> Designed and tested **Only for Linux & Termux** environments.
+> ***Sadece Linux ve Termux ortamları için geliştirildi.***
 
 ## 🌟 Öne Çıkan Özellikler / Features
  * 🛡️ **SecFF (Security Folder & File):** rm ve mv komutlarını korumaya alarak önemli dosya ve klasörlerin yanlışlıkla silinmesini engeller.
