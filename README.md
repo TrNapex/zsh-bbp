@@ -9,7 +9,7 @@
 > [!Note] 
 > ***Sadece Linux & Termux ortamları için geliştirildi ve test edildi.***
 
-## 🌟 Öne Çıkan Özellikler / Features
+## 🌟 Öne Çıkan Özellikler
  * 🛡️ **SecFF (Security Folder & File):** rm ve mv komutlarını korumaya alarak önemli dosya ve klasörlerin yanlışlıkla silinmesini engeller.
  * 📂 **sf Komutu (Smart Lister):** Klasörleri ve dosyaları yan yana düzenli sütunlar halinde gösterir.
  * ⏱️ **Ultra Hızlı Komut Süresi:** Zsh dahili modülü (zsh/datetime) ile çalışan gecikmesiz süre hesaplama.
