@@ -58,7 +58,6 @@ if [ "$SELECTED_LANG" = "TR" ]; then
     fi
     print -P "%F{242}Özel komutlar için: %F{135}bbp spc%f"
     print -P "%F{242}Dili değiştirmek için: %F{135}lang-reset%f\n"
-    print -P "%F{211}(Bu, ilk sürüm. Prompt yeri hafiften gecikmeli olabilir(belki 1-2 hata da bulabilirsiniz). Eğer ilgi görürse, C++ ile version 2.0 yapacağım ve SecFF (Security Folder & File) sistemini ayrı bir proje yapmayı planlıyorum.)%f\n"
 
 else
     print -P "%F{39}Welcome to Terminal!%f"
@@ -69,7 +68,6 @@ else
     fi
     print -P "%F{242}For special commands: %F{135}bbp spc%f"
     print -P "%F{242}To change language: %F{135}lang-reset%f\n"
-    print -P "%F{211}(This is the first version. The prompt might be slightly delayed(maybe you can even find 1 or 2 errors). If it gets enough interest, I will build version 2.0 with C++ And I plan to develop the SecFF (Security Folder & File) system as a separate project.)%f\n"
 
 fi
 
