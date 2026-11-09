@@ -1,21 +1,15 @@
-
 #Sadece Bir Animasyon / Just An Animation
 
-clear && echo •.... && sleep 0.1 && clear && echo .•... && sleep 0.1 && clear && echo ..•.. && sleep 0.1 && clear && echo ...•. && sleep 0.1 && clear && echo ....• && sleep 0.1
+clear && echo •.... && sleep 0.2 && clear && echo .•... && sleep 0.2 && clear && echo ..•.. && sleep 0.2 && clear && echo ...•. && sleep 0.2 && clear && echo ....• && sleep 0.1
 
-#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#================================================================================================================================================================================
 
-
-# === BbP Başlangıç ===
-#====================================================================
 # BbP Ana Dizin Yapılandırması / Core Directory Setup
-
 BBP_DIR="$HOME/.zsh_bbp"
 mkdir -p "$BBP_DIR/plugins"
 
 CONFIG_FILE="$BBP_DIR/lang"
-SEC_FILE="$BBP_DIR/sec_files"
-HISTFILE="$BBP_DIR/history"
+SEC_FILE="$BBP_DIR/sec_files"                                   HISTFILE="$BBP_DIR/history"
 
 touch "$SEC_FILE"
 
@@ -30,65 +24,53 @@ if [ ! -f "$CONFIG_FILE" ]; then
     echo "  [T] Türkçe"
     read -k 1 "user_lang?[E/T]: "
     echo ""
-
     case "$user_lang" in
         [Tt]*) echo "TR" > "$CONFIG_FILE" ;;
-        *)     echo "ENG" > "$CONFIG_FILE" ;;
-    esac
-
+        *)     echo "ENG" > "$CONFIG_FILE" ;;                       esac
     clear
-fi
-
+fi                                                              
 # Güvenli ve optimize edilmiş dil okuma
-
 SELECTED_LANG="ENG"
-
 if [ -r "$CONFIG_FILE" ]; then
     SELECTED_LANG="$(<"$CONFIG_FILE")"
 fi
 
 print -P "%F{39}"
-echo "  ____  _     ____  "
-echo " | __ )| |__ |  _ \ "
+echo "  ____  _     ____  "                                     echo " | __ )| |__ |  _ \ "
 echo " |  _ \| '_ \| |_) |  Basic"
 echo " | |_) | |_) |  __/  But"
 echo " |____/|____/|_|      Pretty"
 print -P "%f"
-
 print -P "%F{179}Version: 1.0 %f\n"
 
 # Eklentiler yüklü mü kontrolü
-
 PLUGINS_INSTALLED=0
-
-if [ -d "$BBP_DIR/plugins/zsh-autosuggestions" ] &&
-   [ -d "$BBP_DIR/plugins/zsh-syntax-highlighting" ]; then
+if [ -d "$BBP_DIR/plugins/zsh-autosuggestions" ] && [ -d "$BBP_DIR/plugins/zsh-syntax-highlighting" ]; then
     PLUGINS_INSTALLED=1
 fi
 
 if [ "$SELECTED_LANG" = "TR" ]; then
     print -P "%F{39}Terminale Hoşgeldin!%f"
     print -P "%F{242}İndirilen/Kurulanları görmek için: %F{135}plugins-installed-by-bbp%f"
-
-    if [ "$PLUGINS_INSTALLED" -eq 0 ]; then
+    if [ $PLUGINS_INSTALLED -eq 0 ]; then
         print -P "%F{242}Otomatik tamamlama ve renklendirme eklentileri için: %F{135}kur%f"
         print -P "%F{242}(Eklentisiz de sorunsuz çalışır, merak etme.)%f"
     fi
-
     print -P "%F{242}Özel komutlar için: %F{135}bbp spc%f"
     print -P "%F{242}Dili değiştirmek için: %F{135}lang-reset%f\n"
+    print -P "%F{211}(Bu, ilk sürüm. Prompt yeri hafiften gecikmeli olabilir(belki 1-2 hata da bulabilirsiniz). Eğer ilgi görürse, C++ ile version 2.0 yapacağım ve SecFF (Security Folder & File) sistemini ayrı bir proje yapmayı planlıyorum.)%f\n"
 
 else
     print -P "%F{39}Welcome to Terminal!%f"
     print -P "%F{242}To see downloaded/installed plugins: %F{135}plugins-installed-by-bbp%f"
-
-    if [ "$PLUGINS_INSTALLED" -eq 0 ]; then
+    if [ $PLUGINS_INSTALLED -eq 0 ]; then
         print -P "%F{242}For auto-suggestions and syntax-highlighting plugins: %F{135}setup%f"
         print -P "%F{242}(zsh-bbp will still work without plugins, don't worry.)%f"
     fi
-
     print -P "%F{242}For special commands: %F{135}bbp spc%f"
     print -P "%F{242}To change language: %F{135}lang-reset%f\n"
+    print -P "%F{211}(This is the first version. The prompt might be slightly delayed(maybe you can even find 1 or 2 errors). If it gets enough interest, I will build version 2.0 with C++ And I plan to develop the SecFF (Security Folder & File) system as a separate project.)%f\n"
+
 fi
 
 #====================================================================
@@ -96,24 +78,13 @@ fi
 
 function _install_zsh_plugins() {
     echo "📦 Eklentiler indiriliyor... (Eng: Plugins are downloading...)"
-
     mkdir -p "$BBP_DIR/plugins"
-
-    [ ! -d "$BBP_DIR/plugins/zsh-autosuggestions" ] &&
-        git clone https://github.com/zsh-users/zsh-autosuggestions \
-        "$BBP_DIR/plugins/zsh-autosuggestions"
-
-    [ ! -d "$BBP_DIR/plugins/zsh-syntax-highlighting" ] &&
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-        "$BBP_DIR/plugins/zsh-syntax-highlighting"
-
+    [ ! -d "$BBP_DIR/plugins/zsh-autosuggestions" ] && git clone https://github.com/zsh-users/zsh-autosuggestions "$BBP_DIR/plugins/zsh-autosuggestions"
+    [ ! -d "$BBP_DIR/plugins/zsh-syntax-highlighting" ] && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$BBP_DIR/plugins/zsh-syntax-highlighting"
     echo "🎉 Kurulum tamamlandı! Yükleniyor... (Eng: Setup completed! Loading...)"
-
-    [ -f "$BBP_DIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ] &&
-        source "$BBP_DIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
-    [ -f "$BBP_DIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] &&
-        source "$BBP_DIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    # Oturumu üst üste bindirmemek için güvenli kaynak yüklemesi
+    [ -f "$BBP_DIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "$BBP_DIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+    [ -f "$BBP_DIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source "$BBP_DIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 }
 
 function plugins-installed-by-bbp() {
@@ -122,11 +93,8 @@ function plugins-installed-by-bbp() {
     local auto_status="❌ Yüklü Değil / Not Installed"
     local syntax_status="❌ Yüklü Değil / Not Installed"
 
-    [ -d "$BBP_DIR/plugins/zsh-autosuggestions" ] &&
-        auto_status="%F{46}✔ Yüklü / Installed%f"
-
-    [ -d "$BBP_DIR/plugins/zsh-syntax-highlighting" ] &&
-        syntax_status="%F{46}✔ Yüklü / Installed%f"
+    [ -d "$BBP_DIR/plugins/zsh-autosuggestions" ] && auto_status="%F{46}✔ Yüklü / Installed%f"
+    [ -d "$BBP_DIR/plugins/zsh-syntax-highlighting" ] && syntax_status="%F{46}✔ Yüklü / Installed%f"
 
     if [ "$SELECTED_LANG" = "TR" ]; then
         print -P "%F{214}1. zsh-autosuggestions:%f ${auto_status}"
@@ -139,31 +107,23 @@ function plugins-installed-by-bbp() {
         print -P "\n%F{135}• Autocd installed.%f %F{242}You can enter a folder by simply typing its name without 'cd'.%f"
         print -P "%F{135}• History settings%f %F{242}have been automatically configured for you.%f"
     fi
-
     print -P "\n%F{24}══════════════════════════════════════════════%f\n"
 }
 
 alias kur='_install_zsh_plugins'
 alias setup='_install_zsh_plugins'
+alias lang-reset='rm -f "$CONFIG_FILE" && echo "Dil sıfırlandı! Terminali yeniden başlatın('zsh' yazman yeterli). / Language reset! Restart terminal(write 'zsh' to terminal)."'
 
-alias lang-reset='rm -f "$CONFIG_FILE" && echo "Dil sıfırlandı! Terminali yeniden başlatın(zsh yazman yeterli). / Language reset! Restart terminal(write zsh to terminal)."'
-
-# Eklentiler yüklüyse çalıştır
-
-[ -f "$BBP_DIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ] &&
-    source "$BBP_DIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
-[ -f "$BBP_DIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] &&
-    source "$BBP_DIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# Eklentiler YÜKLÜYSE çalıştır
+[ -f "$BBP_DIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "$BBP_DIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[ -f "$BBP_DIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source "$BBP_DIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 #====================================================================
 # BbP Özel Güvenlik Sistemi (sec/unsec) / Security System
 
 function sec() {
     if [ -z "$1" ]; then
-        [ "$SELECTED_LANG" = "TR" ] &&
-            echo "Kullanım: sec <dosya_adı>" ||
-            echo "Usage: sec <filename>"
+        [ "$SELECTED_LANG" = "TR" ] && echo "Kullanım: sec <dosya_adı>" || echo "Usage: sec <filename>"
         return 1
     fi
 
@@ -176,12 +136,10 @@ function sec() {
         return 1
     fi
 
-    local target
-    target=$(realpath "$1") || return 1
+    local target=$(realpath "$1")
 
-    if ! grep -qxF "$target" "$SEC_FILE"; then
+    if ! grep -qx "$target" "$SEC_FILE"; then
         echo "$target" >> "$SEC_FILE"
-
         if [ "$SELECTED_LANG" = "TR" ]; then
             print -P "%F{46}🛡 '$1' başarıyla korumaya alındı!%f"
         else
@@ -198,18 +156,14 @@ function sec() {
 
 function unsec() {
     if [ -z "$1" ]; then
-        [ "$SELECTED_LANG" = "TR" ] &&
-            echo "Kullanım: unsec <dosya_adı>" ||
-            echo "Usage: unsec <filename>"
+        [ "$SELECTED_LANG" = "TR" ] && echo "Kullanım: unsec <dosya_adı>" || echo "Usage: unsec <filename>"
         return 1
     fi
 
-    local target
-    target=$(realpath "$1" 2>/dev/null) || target="$1"
+    local target=$(realpath "$1" 2>/dev/null || echo "$1")
 
-    if grep -qxF "$target" "$SEC_FILE"; then
-        grep -vxF "$target" "$SEC_FILE" > "$SEC_FILE.tmp" &&
-            command mv -f "$SEC_FILE.tmp" "$SEC_FILE"
+    if grep -qx "$target" "$SEC_FILE"; then
+        grep -vxF "$target" "$SEC_FILE" > "$SEC_FILE.tmp" && command mv -f "$SEC_FILE.tmp" "$SEC_FILE" 2>/dev/null || sed -i "\|^$target$|d" "$SEC_FILE"
 
         if [ "$SELECTED_LANG" = "TR" ]; then
             print -P "%F{46}🔓 '$1' koruması kaldırıldı.%f"
@@ -228,14 +182,11 @@ function unsec() {
 function rm() {
     local is_protected=0
     local protected_file=""
-    local arg
-    local full_path
 
     for arg in "$@"; do
         if [ -e "$arg" ]; then
-            full_path=$(realpath "$arg" 2>/dev/null || echo "$arg")
-
-            if grep -qxF "$full_path" "$SEC_FILE"; then
+            local full_path=$(realpath "$arg" 2>/dev/null || echo "$arg")
+            if grep -qx "$full_path" "$SEC_FILE"; then
                 is_protected=1
                 protected_file="$arg"
                 break
@@ -243,24 +194,19 @@ function rm() {
         fi
     done
 
-    if [ "$is_protected" -eq 1 ]; then
+    if [ $is_protected -eq 1 ]; then
         print -P "%F{196}⚠️ DİKKAT / WARNING:%f"
-
         if [ "$SELECTED_LANG" = "TR" ]; then
             echo -n "Bu dosyayı ($protected_file) güvene almayı seçmiştin. Silmek istediğine emin misin? [y/N]: "
         else
             echo -n "You chose to protect this file ($protected_file). Are you sure you want to delete it? [y/N]: "
         fi
 
-        read -r ans
-
+        read ans
         case "$ans" in
             [Yy]*)
-                full_path=$(realpath "$protected_file" 2>/dev/null || echo "$protected_file")
-
-                grep -vxF "$full_path" "$SEC_FILE" > "$SEC_FILE.tmp" &&
-                    command mv -f "$SEC_FILE.tmp" "$SEC_FILE"
-
+                local full_path=$(realpath "$protected_file" 2>/dev/null || echo "$protected_file")
+                grep -vxF "$full_path" "$SEC_FILE" > "$SEC_FILE.tmp" && command mv -f "$SEC_FILE.tmp" "$SEC_FILE" 2>/dev/null || sed -i "\|^$full_path$|d" "$SEC_FILE"
                 command rm "$@"
                 ;;
             *)
@@ -280,14 +226,11 @@ function rm() {
 function mv() {
     local protected_file=""
     local old_path=""
-    local arg
-    local candidate
 
     for arg in "$@"; do
         if [[ "$arg" != -* ]]; then
-            candidate=$(realpath "$arg" 2>/dev/null || echo "$arg")
-
-            if grep -qxF "$candidate" "$SEC_FILE"; then
+            local candidate=$(realpath "$arg" 2>/dev/null || echo "$arg")
+            if grep -qx "$candidate" "$SEC_FILE"; then
                 protected_file="$arg"
                 old_path="$candidate"
                 break
@@ -297,15 +240,13 @@ function mv() {
 
     if [ -n "$old_path" ]; then
         print -P "%F{196}⚠️ DİKKAT / WARNING:%f"
-
         if [ "$SELECTED_LANG" = "TR" ]; then
             echo -n "Bu dosya/klasör ($protected_file) koruma altında. Taşımak/Adını değiştirmek istediğine emin misin? [y/N]: "
         else
             echo -n "This file/folder ($protected_file) is protected. Are you sure you want to move/rename it? [y/N]: "
         fi
 
-        read -r ans
-
+        read ans
         case "$ans" in
             [Yy]*)
                 local args=("$@")
@@ -314,7 +255,7 @@ function mv() {
                 command mv "$@"
                 local cmd_status=$?
 
-                if [ "$cmd_status" -eq 0 ]; then
+                if [ $cmd_status -eq 0 ]; then
                     local new_path=""
 
                     if [ -d "$dest" ]; then
@@ -324,10 +265,9 @@ function mv() {
                     fi
 
                     if [ -n "$new_path" ]; then
-                        grep -vxF "$old_path" "$SEC_FILE" > "$SEC_FILE.tmp" &&
-                            command mv -f "$SEC_FILE.tmp" "$SEC_FILE"
+                        grep -vxF "$old_path" "$SEC_FILE" > "$SEC_FILE.tmp" && command mv -f "$SEC_FILE.tmp" "$SEC_FILE" 2>/dev/null || sed -i "\|^$old_path$|d" "$SEC_FILE"
 
-                        if ! grep -qxF "$new_path" "$SEC_FILE"; then
+                        if ! grep -qx "$new_path" "$SEC_FILE"; then
                             echo "$new_path" >> "$SEC_FILE"
                         fi
 
@@ -338,8 +278,7 @@ function mv() {
                         fi
                     fi
                 fi
-
-                return "$cmd_status"
+                return $cmd_status
                 ;;
             *)
                 if [ "$SELECTED_LANG" = "TR" ]; then
@@ -361,15 +300,14 @@ function mv() {
 function bbp() {
     if [ "$1" = "spc" ]; then
         print -P "\n%F{39}═══ 🚀 BbP Özel Komutlar / Special Commands ═══%f\n"
-
         if [ "$SELECTED_LANG" = "TR" ]; then
             print -P "%F{135}  sec <dosya>%f                : Dosyayı özel koruma altına alır."
             print -P "%F{135}  unsec <dosya>%f              : Dosyanın korumasını kaldırır."
             print -P "%F{135}  kur%f                        : Otomatik tamamlama & renklendirme eklentilerini kurar."
             print -P "%F{135}  plugins-installed-by-bbp%f   : İndirilen/Kurulan eklenti durumunu gösterir."
             print -P "%F{135}  lang-reset%f                 : Dil seçim ekranını tekrar açar."
-            print -P "%F{135}  sf%f, %F{135}sf -a%f                   : Dosya ve klasörleri düzenli sütunlar halinde gösterir. Gizli dosyalar için sf -a kullanılır."
-            print -P "%F{242}                                 sf ve sf -a şeklinde kullanabilirsiniz.%f"
+            print -P "%F{135}  sf%f                        : Dosya ve klasörleri düzenli sütunlar halinde gösterir."
+            print -P "%F{242}                                 (Büyük dizinlerde 'ls', home (~) gibi yerlerde 'sf' önerilir.)%f"
             print -P "%F{135}  bbp spc%f                    : Bu özel komutlar listesini gösterir."
         else
             print -P "%F{135}  sec <file>%f                 : Protects the specified file from deletion."
@@ -377,11 +315,10 @@ function bbp() {
             print -P "%F{135}  setup%f                      : Installs auto-suggestions & syntax highlighting."
             print -P "%F{135}  plugins-installed-by-bbp%f   : Shows status of downloaded/installed plugins."
             print -P "%F{135}  lang-reset%f                 : Resets language selection."
-            print -P "%F{135}  sf%f, %F{135}sf -a%f                   : Displays files and folders in clean columns. Use sf -a to include hidden files."
-            print -P "%F{242}                                 You can use either sf or sf -a.%f"
+            print -P "%F{135}  sf%f                        : Displays files and folders in clean columns."
+            print -P "%F{242}                                 (Use 'ls' for large directories, 'sf' for home (~).)%f"
             print -P "%F{135}  bbp spc%f                    : Displays this special commands list."
         fi
-
         print -P "\n%F{24}══════════════════════════════════════════════%f\n"
     else
         if [ "$SELECTED_LANG" = "TR" ]; then
@@ -397,7 +334,6 @@ function bbp() {
 
 HISTSIZE=10000
 SAVEHIST=10000
-
 setopt appendhistory
 setopt sharehistory
 setopt autocd
@@ -407,10 +343,9 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_SPACE
 
 #====================================================================
-# Komut Süresi Hesaplama / Command Duration
+# Komut Süresi Hesaplama (Ultra-Fast Built-in Zsh Datetime)
 
 zmodload zsh/datetime
-
 typeset -g _cmd_start_time=0
 typeset -g _last_elapsed_str=""
 
@@ -419,19 +354,19 @@ function preexec() {
 }
 
 function precmd() {
-    if (( _cmd_start_time > 0 )); then
+    if [ $_cmd_start_time -gt 0 ]; then
         local elapsed=$(( SECONDS - _cmd_start_time ))
         _cmd_start_time=0
 
-        if (( elapsed >= 1 )); then
+        if [ $elapsed -ge 1 ]; then
             local h=$(( elapsed / 3600 ))
             local m=$(( (elapsed % 3600) / 60 ))
             local s=$(( elapsed % 60 ))
-            local t_str=""
 
-            if (( h > 0 )); then
+            local t_str=""
+            if [ $h -gt 0 ]; then
                 t_str="${h}s ${m}d ${s}sn"
-            elif (( m > 0 )); then
+            elif [ $m -gt 0 ]; then
                 t_str="${m}d ${s}sn"
             else
                 t_str="${s}sn"
@@ -445,22 +380,20 @@ function precmd() {
 }
 
 #====================================================================
-# Git Göstergesi / Git Branch Display
+# Git Göstergesi (Optimized Async/Quick check) / Git Branch Display
 
 autoload -Uz vcs_info
-
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' formats ' %F{24}│%F{214} 🌿 %b%f'
 zstyle ':vcs_info:git:*' check-for-changes false
 zstyle ':vcs_info:git:*' get-revision false
 
-function precmd_vcs_info() {
+precmd_vcs_info() {
     if [[ -d .git || -e .git ]]; then
         vcs_info
     else
         local d="$PWD"
         local found=0
-
         while [[ "$d" != "/" && -n "$d" ]]; do
             if [[ -e "$d/.git" ]]; then
                 found=1
@@ -469,14 +402,13 @@ function precmd_vcs_info() {
             d="${d%/*}"
         done
 
-        if (( found == 1 )); then
+        if [ $found -eq 1 ]; then
             vcs_info
         else
             vcs_info_msg_0_=""
         fi
     fi
 }
-
 precmd_functions+=(precmd_vcs_info)
 
 #====================================================================
@@ -484,73 +416,39 @@ precmd_functions+=(precmd_vcs_info)
 
 PROMPT=$'%F{24}【%F{39}%~%f${_last_elapsed_str}${vcs_info_msg_0_}%F{196}%(?.. %F{24}│%F{196} ✘ %?)%(1j. %F{24}│%F{220} ⚙ %j%f.)%F{24}】%F{242} %D{%H:%M}%f\n%F{24}%(?:%F{46}:%F{196})❯%f '
 
+
 #====================================================================
-# Özel Düzenli Liste Komutu / Custom Folder & File Lister
-#
-# sf     : Gizli dosyalar hariç
-# sf -a  : Gizli dosyalar ve klasörler en başta
-#
-#====================================================================
+# Özel Düzenli Liste Komutu / Custom Folder & File Lister (Optimized)
 
 function lsa() {
     setopt localoptions nullglob
 
-    local show_all=false
-
-    if [[ "$1" == "-a" ]]; then
-        show_all=true
-    fi
-
-    local hidden_dirs=()
     local dirs=()
-    local hidden_files=()
     local files=()
     local item
 
-    # Dosya ve klasörleri topla
-
     for item in .* *; do
         [[ "$item" == "." || "$item" == ".." ]] && continue
-
-        # -a seçeneği verilmemişse gizli öğeleri atla
-
-        if [[ "$show_all" == false && "$item" == .* ]]; then
-            continue
-        fi
-
-        if [[ -d "$item" ]]; then
-            if [[ "$item" == .* ]]; then
-                hidden_dirs+=("$item")
-            else
-                dirs+=("$item")
-            fi
-        elif [[ -e "$item" || -L "$item" ]]; then
-            if [[ "$item" == .* ]]; then
-                hidden_files+=("$item")
-            else
-                files+=("$item")
-            fi
+        if [ -d "$item" ]; then
+            dirs+=("$item")
+        elif [ -e "$item" ]; then
+            files+=("$item")
         fi
     done
 
-    # Gizli klasör ve dosyaları kendi sütunlarında en başa al
-
-    dirs=("${hidden_dirs[@]}" "${dirs[@]}")
-    files=("${hidden_files[@]}" "${files[@]}")
-
-    if (( ${#dirs[@]} == 0 && ${#files[@]} == 0 )); then
+    if [ ${#dirs[@]} -eq 0 ] && [ ${#files[@]} -eq 0 ]; then
         return 0
     fi
 
     local max_len=${#dirs[@]}
-    (( ${#files[@]} > max_len )) && max_len=${#files[@]}
+    [ ${#files[@]} -gt $max_len ] && max_len=${#files[@]}
 
     local dir_label="[K]"
     local file_label="[D]"
     local dir_title="📂 KLASÖRLER"
     local file_title="📄 DOSYALAR"
 
-    if [[ "$SELECTED_LANG" != "TR" ]]; then
+    if [ "$SELECTED_LANG" != "TR" ]; then
         dir_label="[Fo]"
         file_label="[Fi]"
         dir_title="📂 FOLDERS"
@@ -561,25 +459,19 @@ function lsa() {
     print -P "%F{24}═══════════════════════════\t═══════════════════════════%f"
 
     local i
-    local name
-    local display_name
-    local padded_name
-    local color
-    local d_out
-    local f_out
-
     for (( i=1; i<=max_len; i++ )); do
-        d_out=""
-        f_out=""
+        local d_out=""
+        local f_out=""
 
-        # Klasör sütunu
+        if [ $i -le ${#dirs[@]} ]; then
+            local name="${dirs[$i]}"
+            local display_name="${name:0:20}"
+            local mark=" "
+            [[ "$name" == .* ]] && mark="*"
 
-        if (( i <= ${#dirs[@]} )); then
-            name="${dirs[$i]}"
-            display_name="${name:0:20}"
-            padded_name="${(r:20:)display_name}"
+            local padded_name="${(r:20:)display_name}"
 
-            if [[ "$name" == .* ]]; then
+            if [[ "$mark" == "*" ]]; then
                 d_out="%F{39}${dir_label}%F{196}*%F{39}${padded_name}%f"
             else
                 d_out="%F{39}${dir_label} ${padded_name}%f"
@@ -588,16 +480,16 @@ function lsa() {
             d_out="                        "
         fi
 
-        # Dosya sütunu
+        if [ $i -le ${#files[@]} ]; then
+            local name="${files[$i]}"
+            local display_name="${name:0:20}"
+            local mark=" "
+            [[ "$name" == .* ]] && mark="*"
 
-        if (( i <= ${#files[@]} )); then
-            name="${files[$i]}"
-            display_name="${name:0:20}"
-            color="214"
+            local color="214"
+            [ -x "$name" ] && color="207"
 
-            [[ -x "$name" && ! -d "$name" ]] && color="207"
-
-            if [[ "$name" == .* ]]; then
+            if [[ "$mark" == "*" ]]; then
                 f_out="%F{${color}}${file_label}%F{196}*%F{${color}}${display_name}%f"
             else
                 f_out="%F{${color}}${file_label} ${display_name}%f"
@@ -608,10 +500,26 @@ function lsa() {
     done
 }
 
-#====================================================================
-# Aliaslar / Aliases
-
 alias sf='lsa'
 
-#============================================================
-# === BbP Bitiş / BbP End ===
+function bbp_start() {
+    # Doğrudan bulunduğumuz klasördeki bbp.sh dosyasına bakıyoruz
+    if [ -f "bbp.sh" ]; then
+        # 1. Kodları .zshrc'ye kopyala
+        echo "" >> "$HOME/.zshrc"
+        echo "# === BbP Başlangıç ===" >> "$HOME/.zshrc"
+        cat "bbp.sh" >> "$HOME/.zshrc"
+        echo "# === BbP Bitiş ===" >> "$HOME/.zshrc"
+
+        # 2. Kurulum fonksiyonunun kendisini .zshrc içinden temizle
+        sed -i '' '/^function bbp_start()/,/^}/d' "$HOME/.zshrc" 2>/dev/null || sed -i '/^function bbp_start()/,/^}/d' "$HOME/.zshrc"
+
+        echo "✨ BbP başarıyla kuruldu ve temizlendi!"
+
+        # 3. Terminali tazeleyiver
+        source "$HOME/.zshrc"
+    else
+        echo "❌ Hata: Bulunduğun klasörde 'bbp.sh' dosyası bulunamadı!"
+        echo "💡 İpucu: Lütfen 'cd zsh-bbp' ile proje klasörünün içinde olduğundan emin ol."
+    fi
+}
